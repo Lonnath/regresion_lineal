@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSV to HTML</title>
+</head>
+<body>
+    <h2>
+        Regresión Lineal
+    </h2>
+    <div style="width: 70%;">
+        <table>
+            <tr>
+                <td>
+                    AÑO:
+                </td>
+                <td>
+                    {{datos.anio}}
+                </td>
+                <td>
+                    <form action="{% url 'csv_to_html' %}" method="POST">
+                        <label for="">AÑO:</label>
+                        <input type="text" name="valor_anio" id="valor_anio">
+                        <button>ENVIAR</button>
+                    </form>
+                </td>
+                <td rowspan="7">
+                    Grafico:
+                    <img src="{% static 'mi_imagen.png' %}" style="width:400px; height: 400px;"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    MAE:
+                </td>
+                <td>
+                    {{ datos.MAE|floatformat:0 }}
+                </td>
+                <td>
+                    <h3>
+                        <b>Predicción:</b>
+                        {{ datos.prediccion|floatformat:0 }}
+                    </h3>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    MSE:
+                </td>
+                <td>
+                    {{ datos.MSE|floatformat:0 }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    RMSE:
+                </td>
+                <td>
+                    {{ datos.RMSE|floatformat:0 }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    R2:
+                </td>
+                <td>
+                    {{ datos.R2|floatformat:0 }}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <h4>
+                        Registros
+                    </h4>
+                    {{ data|safe }}
+                </td>
+            </tr>
+        </table>
+    </div>    
+</body>
+</html>
